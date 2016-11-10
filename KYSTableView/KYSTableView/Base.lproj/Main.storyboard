@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="65B-LB-Llb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KYSTableViewCell" rowHeight="66" id="GEs-HJ-OPU" customClass="KYSTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GEs-HJ-OPU" id="xbc-xH-tVY">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuA-rm-ItF">
+                                                    <rect key="frame" x="0.0" y="8" width="320" height="49"/>
+                                                    <color key="backgroundColor" red="0.23461094798657717" green="0.24724727348993289" blue="0.33821833053691275" alpha="0.17906788793103448" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <color key="textColor" red="0.29230625919999997" green="1" blue="0.90818173639999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cuA-rm-ItF" firstAttribute="leading" secondItem="xbc-xH-tVY" secondAttribute="leading" id="6Z9-2y-AMj"/>
+                                                <constraint firstItem="cuA-rm-ItF" firstAttribute="top" secondItem="xbc-xH-tVY" secondAttribute="top" constant="8" id="NlC-TV-bqw"/>
+                                                <constraint firstAttribute="trailing" secondItem="cuA-rm-ItF" secondAttribute="trailing" id="udh-O1-MOz"/>
+                                                <constraint firstAttribute="bottom" secondItem="cuA-rm-ItF" secondAttribute="bottom" constant="8" id="zrw-OU-8Ps"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="kys_titleLabel" destination="cuA-rm-ItF" id="Dlb-Hr-hhz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="65B-LB-Llb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="bvr-Po-MXe"/>
+                            <constraint firstAttribute="trailing" secondItem="65B-LB-Llb" secondAttribute="trailing" id="dSj-1V-f5f"/>
+                            <constraint firstItem="65B-LB-Llb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sQV-Db-aCT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="65B-LB-Llb" secondAttribute="bottom" id="twK-1a-W5Q"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableView" destination="65B-LB-Llb" id="AaW-mZ-F2q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="405" y="298"/>
+        </scene>
+    </scenes>
+</document>

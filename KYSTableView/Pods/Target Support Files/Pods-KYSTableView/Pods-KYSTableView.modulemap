@@ -1,0 +1,6 @@
+framework module Pods_KYSTableView {
+  umbrella header "Pods-KYSTableView-umbrella.h"
+
+  export *
+  module * { export * }
+}
