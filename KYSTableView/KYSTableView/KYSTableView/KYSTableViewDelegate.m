@@ -34,8 +34,21 @@
     return self;
 }
 
+- (void)dealloc{
+    self.didSelectRowBlock=nil;
+}
+
 
 #pragma mark - UITableViewDelegate
+//public implement
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.didSelectRowBlock) {
+        id object=[self.dataProvider objectAtIndexPath:indexPath];
+        self.didSelectRowBlock(indexPath,object);
+    }
+}
+
+//peivate imolement
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     //NSLog(@"tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath");
     //获取cell的Identifier

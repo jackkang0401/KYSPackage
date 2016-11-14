@@ -61,6 +61,11 @@
     return self;
 }
 
+- (void)dealloc{
+    self.loadBlock=nil;
+    self.loadPageDataBlock=nil;
+}
+
 - (void)loadData{
     if (self.isLoading) {
         NSLog(@"有正在刷新的内容");
@@ -93,15 +98,26 @@
 }
 
 //处理分页
+
 //加载第第一页(下拉使用)
 - (void)loadFirstPage{
-    self.currentPage=-1;
-    self.totalPage=0;
-    [self p_loadPageDataNeedCleanOldData:YES];
+    [self loadFirstPageWithPage:1 useAnimation:NO];
 }
 
-- (void)loadFirstPageWithAnimation{
-    [self.tableView kys_startPullDownRefreshing];
+//加载第一页数据，并传入第一页页码
+- (void)loadFirstPageWithPage:(NSInteger)firstPageNum{
+    [self loadFirstPageWithPage:firstPageNum useAnimation:NO];
+}
+
+//传入第一页页码，是否启用下拉加载动画
+- (void)loadFirstPageWithPage:(NSInteger)firstPageNum useAnimation:(BOOL)useAnimation{
+    self.currentPage=firstPageNum-1;
+    self.totalPage=firstPageNum;
+    if (useAnimation) {
+        [self.tableView kys_startPullDownRefreshing];
+    }else{
+        [self p_loadPageDataNeedCleanOldData:YES];
+    }
 }
 
 //加载下一页(上拉使用)
@@ -110,8 +126,6 @@
 }
 
 - (void)p_loadPageDataNeedCleanOldData:(BOOL)needClean{
-    
-    NSLog(@"112233445666:%d",self.isLoading);
     
     if (self.isLoading) {
         NSLog(@"有正在刷新的内容");
@@ -125,7 +139,14 @@
         __weak typeof (self) weakSelf=self;
         KYSDataProviderPageAction action=^(NSInteger currentPage,NSInteger totalPage,NSMutableArray<KYSSectionData *> * sectionsArray){
             NSLog(@"action: %ld",(long)currentPage);
+            
             typeof (weakSelf) strongSelf=weakSelf;
+            if (!sectionsArray) {
+                //结束下拉动画
+                [strongSelf p_endPullDownRefreshAnimation];
+                strongSelf.isLoading=NO;
+                return;
+            }
             //NSLog(@"action: %@",sectionsArray);
             strongSelf.currentPage=currentPage;//更新当前页
             strongSelf.totalPage=totalPage;
@@ -149,7 +170,7 @@
             strongSelf.isLoading=NO;
         };
         self.isLoading=YES;
-        //如果不是第0页 +1
+        //加载下一页数据
         self.loadPageDataBlock(self.currentPage+1,action);
     }
 }

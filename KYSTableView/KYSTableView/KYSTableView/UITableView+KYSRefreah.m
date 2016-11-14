@@ -39,11 +39,12 @@
                 refreshingBlock:(KYSTableViewRefreshingBlock) block{
     objc_setAssociatedObject(self, @selector(kys_pullUpRefreshEnable), @(enable), OBJC_ASSOCIATION_RETAIN);
     if (enable) {
-        self.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        self.footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
             if (block) {
                 block();
             }
         }];
+    
     }else{
         self.footer=nil;
     }
@@ -70,8 +71,11 @@
 }
 
 - (void)kys_endPullUpRefreshing {
-    if (self.footer&&[self.footer isRefreshing]) {
-        [self.footer endRefreshing];
+    if (self.footer) {
+        [self.footer resetNoMoreData];
+        if([self.footer isRefreshing]){
+            [self.footer endRefreshing];
+        }
     }
 }
 

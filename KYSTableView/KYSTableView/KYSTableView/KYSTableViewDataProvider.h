@@ -22,10 +22,13 @@
 
 //数据加载完成处理
 typedef void(^KYSDataProviderAction)(NSMutableArray<KYSSectionData *> *);
+
 //加载数据block
 typedef void(^KYSDataProviderLoad)(KYSDataProviderAction);
-//分页数据加载完成处理
-typedef void(^KYSDataProviderPageAction)(NSInteger currentPage,NSInteger totalPage,NSMutableArray<KYSSectionData *> *);
+
+//分页数据加载完成处理，加载失败，最后一个参数传入nil
+typedef void(^KYSDataProviderPageAction)(NSInteger page,NSInteger totalPage,NSMutableArray<KYSSectionData *> *);
+
 //加载分页数据数据block
 typedef void(^KYSDataProviderLoadPageData)(NSInteger,KYSDataProviderPageAction);
 
@@ -49,22 +52,30 @@ typedef void(^KYSDataProviderLoadPageData)(NSInteger,KYSDataProviderPageAction);
                          delegate:(id<KYSTableViewDataProviderDelegate>)delegate
                loadPageDataBlock:(KYSDataProviderLoadPageData) loadPageDataBlock;
 
+#pragma mark - 加载数据
 //开始加载数据(下拉)
 - (void)loadData;
 
 //下拉刷新
 - (void)loadDataWithAnimation;
 
-//处理分页
+
+#pragma mark - 分页加载数据
+
 //加载第第一页,会清空之前数据(下拉使用)
 - (void)loadFirstPage;
 
-- (void)loadFirstPageWithAnimation;
+//加载第一页数据，并传入第一页页码
+- (void)loadFirstPageWithPage:(NSInteger)firstPageNum;
 
-//加载下一页(上拉使用)
+//加载第一页数据，传入第一页页码，是否启用下拉加载动画
+- (void)loadFirstPageWithPage:(NSInteger)firstPageNum useAnimation:(BOOL)useAnimation;
+
+//加载下一页(上拉加载)
 - (void)loadNextPage;
 
 
+#pragma mark - tableview data
 - (NSInteger)numberOfSections;
 
 //获取section数据
