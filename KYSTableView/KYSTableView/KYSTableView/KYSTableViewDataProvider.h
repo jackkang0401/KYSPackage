@@ -36,6 +36,9 @@ typedef void(^KYSDataProviderLoadPageData)(NSInteger,KYSDataProviderPageAction);
 
 @interface KYSTableViewDataProvider : NSObject
 
+// key 为cell 的identity： value 为cell的固定高度
+@property (nonatomic, strong)NSMutableDictionary *cellHeightDictionry;
+
 @property(nonatomic,copy)NSString *testStr;
 
 @property(nonatomic,strong)NSMutableArray<KYSSectionData *> *sectionsArray;

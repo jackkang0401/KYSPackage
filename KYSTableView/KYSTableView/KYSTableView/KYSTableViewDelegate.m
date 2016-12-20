@@ -9,7 +9,7 @@
 #import "KYSTableViewDelegate.h"
 #import "KYSTableViewDataProvider.h"
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
-
+#import "KYSNumData.h"
 @interface KYSTableViewDelegate()<UITableViewDelegate>
 
 @property(nonatomic,weak)id<KYSTableViewProtocal> delegate;
@@ -50,6 +50,7 @@
 
 //peivate imolement
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     //NSLog(@"tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath");
     //获取cell的Identifier
     NSString *cellIndentifier=[self p_cellIdentifierWithTableView:tableView indexPath:indexPath];
@@ -58,11 +59,15 @@
         NSLog(@"请实现KYSDataSourceDelegate的tableView:cellIndentifierForRowAtIndexPath:方法,并返回有效的identifier");
         return 0;
     }
-    __weak typeof (self) weakSelf=self;
-    return [tableView fd_heightForCellWithIdentifier:cellIndentifier cacheByIndexPath:indexPath configuration:^(UITableViewCell<KYSTableViewCellProtocol> *cell) {
-        typeof (weakSelf) strongSelf=weakSelf;
-        [cell setCellDataWithObject:[strongSelf.dataProvider objectAtIndexPath:indexPath]];
-    }];
+    
+    KYSNumData *baseModal = [self.dataProvider objectAtIndexPath:indexPath];
+    //未使用固定高度
+    if (NO == baseModal.isRegularHeight) {
+        baseModal.cellRegularHeight=[tableView fd_heightForCellWithIdentifier:cellIndentifier cacheByIndexPath:indexPath configuration:^(UITableViewCell<KYSTableViewCellProtocol> *cell) {
+            [cell setCellDataWithObject:baseModal];
+        }];
+    }
+    return baseModal.cellRegularHeight;
 }
 
 #pragma mark - private

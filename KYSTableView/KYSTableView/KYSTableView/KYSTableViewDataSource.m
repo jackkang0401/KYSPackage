@@ -53,7 +53,7 @@
     
     //获取cell的Identifier
     NSString *cellIndentifier=[self p_cellIdentifierWithTableView:tableView indexPath:indexPath];
-    NSLog(@"%@",cellIndentifier);
+    //NSLog(@"%@",cellIndentifier);
     if (!cellIndentifier.length){
         NSLog(@"请实现KYSDataSourceDelegate的tableView:cellIndentifierForRowAtIndexPath:方法,并返回有效的identifier");
         return nil;

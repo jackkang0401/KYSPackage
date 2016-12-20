@@ -96,13 +96,7 @@
         [strongSelf.dataProvider loadNextPage];
     }];
     
-    [_dataProvider loadFirstPageWithAnimation];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
+    [_dataProvider loadFirstPageWithPage:0];
 }
 
 #pragma mark - KYSTableViewDataProviderDelegate
