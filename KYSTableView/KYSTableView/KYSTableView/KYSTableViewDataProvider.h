@@ -49,11 +49,11 @@ typedef void(^KYSDataProviderLoadPageData)(NSInteger,KYSDataProviderPageAction);
 
 - (instancetype)initWithTableView:(UITableView *)tableView
                          delegate:(id<KYSTableViewDataProviderDelegate>)delegate
-                        loadBlock:(KYSDataProviderLoad) loadBlock;
+                        loadBlock:(KYSDataProviderLoad) loadBlock;//必须回调，否者不回更改刷新状态
 
 - (instancetype)initWithTableView:(UITableView *)tableView
                          delegate:(id<KYSTableViewDataProviderDelegate>)delegate
-               loadPageDataBlock:(KYSDataProviderLoadPageData) loadPageDataBlock;
+               loadPageDataBlock:(KYSDataProviderLoadPageData) loadPageDataBlock;//必须回调，否者不回更改刷新状态
 
 #pragma mark - 加载数据
 //开始加载数据(下拉)
