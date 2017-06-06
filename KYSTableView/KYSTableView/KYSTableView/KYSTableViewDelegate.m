@@ -10,6 +10,8 @@
 #import "KYSTableViewDataProvider.h"
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "KYSNumData.h"
+#import "UITableView+KYSRefreah.h"
+
 @interface KYSTableViewDelegate()<UITableViewDelegate>
 
 @property(nonatomic,weak)id<KYSTableViewProtocal> delegate;
@@ -42,6 +44,10 @@
 #pragma mark - UITableViewDelegate
 //public implement
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([tableView kys_isRefreshing]) {
+        NSLog(@"正在刷新,不进行选中回调");
+        return;
+    }
     if (self.didSelectRowBlock) {
         id object=[self.dataProvider objectAtIndexPath:indexPath];
         self.didSelectRowBlock(indexPath,object);

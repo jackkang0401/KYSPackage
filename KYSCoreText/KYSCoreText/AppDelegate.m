@@ -25,7 +25,6 @@
 //        NSLog(@"family name: %@",familyName);
 //        NSLog(@"font names: %@",[UIFont fontNamesForFamilyName:familyName]);
 //    }
-    
     return YES;
 }
 

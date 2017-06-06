@@ -12,16 +12,15 @@ typedef void (^KYSTableViewRefreshingBlock)();
 
 @interface UITableView (KYSRefreah)
 
-//标记是否添加下拉刷新
-@property(nonatomic,assign,readonly)BOOL kys_pullDownRefreshEnable;
-//标记是否添加上拉刷新
-@property(nonatomic,assign,readonly)BOOL kys_pullUpRefreshEnable;
+- (BOOL)kys_isRefreshing;
 
-- (void)kys_pullDownRefreshEnable:(BOOL)enable
-                  refreshingBlock:(KYSTableViewRefreshingBlock) block;
+- (BOOL)kys_isHeaderRefreshing;
 
-- (void)kys_pullUpRefreshEnable:(BOOL)enable
-                refreshingBlock:(KYSTableViewRefreshingBlock) block;
+- (BOOL)kys_isFooterRefreshing;
+
+- (void)kys_pullDownRefreshingBlock:(KYSTableViewRefreshingBlock) block;
+
+- (void)kys_pullUpRefreshingBlock:(KYSTableViewRefreshingBlock) block;
 
 - (void)kys_startPullDownRefreshing;
 

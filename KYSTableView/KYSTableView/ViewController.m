@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+
 #import "KYSTableViewDataProvider.h"
 #import "KYSTableViewDataSource.h"
 #import "KYSTableViewDelegate.h"
@@ -85,12 +86,12 @@
     
     
     __weak typeof (self) weakSelf=self;
-    [_tableView  kys_pullDownRefreshEnable:YES refreshingBlock:^{
+    [_tableView  kys_pullDownRefreshingBlock:^{
         NSLog(@"下拉刷新");
         typeof(weakSelf) strongSelf=weakSelf;
         [strongSelf.dataProvider loadFirstPage];
     }];
-    [_tableView kys_pullUpRefreshEnable:YES refreshingBlock:^{
+    [_tableView kys_pullUpRefreshingBlock:^{
         NSLog(@"上拉刷新");
         typeof(weakSelf) strongSelf=weakSelf;
         [strongSelf.dataProvider loadNextPage];

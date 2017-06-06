@@ -13,14 +13,29 @@
 
 #pragma mark - refresh
 
-- (BOOL)kys_pullDownRefreshEnable{
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
+- (BOOL)kys_isRefreshing{
+    if ([self kys_isHeaderRefreshing]||[self kys_isFooterRefreshing]) {
+        return YES;
+    }
+    return NO;
 }
 
-- (void)kys_pullDownRefreshEnable:(BOOL)enable
-                  refreshingBlock:(KYSTableViewRefreshingBlock) block{
-    objc_setAssociatedObject(self, @selector(kys_pullDownRefreshEnable), @(enable), OBJC_ASSOCIATION_RETAIN);
-    if (enable) {
+- (BOOL)kys_isHeaderRefreshing{
+    if ([self.header isRefreshing]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)kys_isFooterRefreshing{
+    if ([self.footer isRefreshing]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)kys_pullDownRefreshingBlock:(KYSTableViewRefreshingBlock) block{
+    if (block) {
         self.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             if (block) {
                 block();
@@ -31,20 +46,13 @@
     }
 }
 
-- (BOOL)kys_pullUpRefreshEnable{
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
-}
-
-- (void)kys_pullUpRefreshEnable:(BOOL)enable
-                refreshingBlock:(KYSTableViewRefreshingBlock) block{
-    objc_setAssociatedObject(self, @selector(kys_pullUpRefreshEnable), @(enable), OBJC_ASSOCIATION_RETAIN);
-    if (enable) {
+- (void)kys_pullUpRefreshingBlock:(KYSTableViewRefreshingBlock) block{
+    if (block) {
         self.footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
             if (block) {
                 block();
             }
         }];
-    
     }else{
         self.footer=nil;
     }
