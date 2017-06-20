@@ -14,9 +14,6 @@
 
 
 // 未使用固定高度存放自动计算的高度
-@property(nonatomic,assign)CGFloat cellRegularHeight;
-
-// 是不是固定高度： YES要主动设置cellRegularHeight的高度，  NO cellRegularHeight值为自动计算高度
-@property (nonatomic, assign)BOOL  isRegularHeight;
+@property(nonatomic,assign)CGFloat cellHeight;
 
 @end

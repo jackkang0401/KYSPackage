@@ -19,6 +19,9 @@
 @protocol KYSNumDataPrococol <NSObject>
 
 @required
+
+//未使用固定高度存放自动计算的高度
+@property(nonatomic,assign)CGFloat cellHeight;
 //将字典转换成模型
 + (KYSNumData *)transformWithDictionary:(NSDictionary *)dic;
 

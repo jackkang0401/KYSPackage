@@ -15,18 +15,15 @@ PODS:
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - MJRefresh (2.4.12)
-  - UITableView+FDTemplateLayoutCell (1.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0.4)
   - MJRefresh (~> 2.4.12)
-  - UITableView+FDTemplateLayoutCell (~> 1.4)
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   MJRefresh: ca8e9589895977df32d379d46e6b8a5450b3ff44
-  UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 
-PODFILE CHECKSUM: 36c317f7e3effd7d90893fcd2cdd65892e5b490a
+PODFILE CHECKSUM: 8d6ce26403cca437e19fa7e276b62e888b811efa
 
-COCOAPODS: 1.1.0.beta.1
+COCOAPODS: 1.2.0

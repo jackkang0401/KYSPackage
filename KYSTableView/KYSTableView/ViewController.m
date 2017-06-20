@@ -72,7 +72,9 @@
                 //解析过程感觉还是可以抽出来
                 NSMutableArray<KYSNumData *> *numsArray=[NSMutableArray new];
                 for (NSDictionary *dic in results[@"object"]) {
-                    [numsArray  addObject:[KYSDataModel transformWithDictionary:dic]];
+                    KYSDataModel *num=(KYSDataModel *)[KYSDataModel transformWithDictionary:dic];
+                    num.cellHeight=100;//需要计算高度
+                    [numsArray  addObject:num];
                 }
                                                                     
                 KYSSectionData *section=[[KYSSectionData alloc] initWithNumsArray:numsArray];
