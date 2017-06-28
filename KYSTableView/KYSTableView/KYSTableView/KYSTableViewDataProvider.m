@@ -226,21 +226,15 @@
     if (!flag) {
         return;
     }
-    if (self.tableView&&[self.tableView respondsToSelector:@selector(kys_isHeaderRefreshing)]) {
-        BOOL enable=[self.tableView kys_isHeaderRefreshing];
-        if (enable) {
-            [self.tableView kys_startPullDownRefreshing];
-        }
+    if (self.tableView) {
+        [self.tableView kys_startPullDownRefreshing];
     }
 }
 
 //结束下拉刷新动画
 - (void)p_endPullDownRefreshAnimation{
-    if (self.tableView&&[self.tableView respondsToSelector:@selector(kys_isHeaderRefreshing)]) {
-        BOOL enable=[self.tableView kys_isHeaderRefreshing];
-        if (enable) {
-            [self.tableView kys_endPullDownRefreshing];
-        }
+    if (self.tableView) {
+        [self.tableView kys_endPullDownRefreshing];
     }
 }
 
@@ -250,31 +244,22 @@
         return;
     }
     
-    if (self.tableView&&[self.tableView respondsToSelector:@selector(kys_isFooterRefreshing)]) {
-        BOOL enable=[self.tableView kys_isFooterRefreshing];
-        if (enable) {
-            [self.tableView kys_startPullUpRefreshing];
-        }
+    if (self.tableView) {
+        [self.tableView kys_startPullUpRefreshing];
     }
 }
 
 //结束上拉刷新动画
 - (void)p_endPullUpRefreshAnimation{
-    if (self.tableView&&[self.tableView respondsToSelector:@selector(kys_isFooterRefreshing)]) {
-        BOOL enable=[self.tableView kys_isFooterRefreshing];
-        if (enable) {
-            [self.tableView kys_endPullUpRefreshing];
-        }
+    if (self.tableView) {
+        [self.tableView kys_endPullUpRefreshing];
     }
 }
 
 //没有更多数据
 - (void)p_didLoadLastPage{
-    if (self.tableView&&[self.tableView respondsToSelector:@selector(kys_isFooterRefreshing)]) {
-        BOOL enable=[self.tableView kys_isFooterRefreshing];
-        if (enable) {
-            [self.tableView kys_didLoadLastPage];
-        }
+    if (self.tableView) {
+        [self.tableView kys_didLoadLastPage];
     }
 }
 
